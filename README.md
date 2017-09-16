@@ -96,7 +96,7 @@ on success:
 {
   "code": 0,
   "err_message": "ok",
-  "data": 7422112736388306927 // simhash fingerprint
+  "data": 7422112736388306927
 }
 ```
 on error:
