@@ -1,0 +1,10 @@
+{
+  "hash_type": 1,
+  "hmm_dict": "dict/hmm_model.utf8",
+  "idf_dict": "dict/idf.utf8",
+  "user_dict": "dict/jieba.dict.utf8",
+  "stop_words": "dict/stop_words.utf8",
+  "simhash_limit": 3,
+  "host": "",
+  "port": "8000"
+}

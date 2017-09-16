@@ -1,0 +1,10 @@
+language: go
+sudo: false
+go:
+  - tip
+notifications:
+  recipients:
+    - im@huhaoyu.com
+  email:
+    on_success: change
+    on_failure: always
