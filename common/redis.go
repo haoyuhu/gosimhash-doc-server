@@ -9,15 +9,6 @@ import (
 	"github.com/HaoyuHu/gosimhash-doc-server/model"
 )
 
-type SimhashLimit int
-
-const (
-	LIMIT_1  = SimhashLimit(1)
-	LIMIT_3  = SimhashLimit(3)
-	LIMIT_7  = SimhashLimit(7)
-	LIMIT_15 = SimhashLimit(15)
-)
-
 type RedisSimhashCache struct {
 	operator *SimhashOperator
 	client   *redis.Client
