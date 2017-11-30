@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 )
 
-const UINT_BASE = 16
+const UnitBase = 16
 
 func CountBinary(number int) int {
 	count := 0

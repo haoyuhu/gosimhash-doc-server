@@ -7,21 +7,21 @@ import (
 )
 
 const (
-	CODE_OK  = 0
-	CODE_ERR = -1
+	CodeOk  = 0
+	CodeErr = -1
 )
-const OK_MESSAGE = "ok"
+const OkMessage = "ok"
 
 type HttpBundle struct {
-	Code       int    `json:"code"`
-	ErrMessage string `json:"err_message"`
-	Data interface{} `json:"data"`
+	Code       int         `json:"code"`
+	ErrMessage string      `json:"err_message"`
+	Data       interface{} `json:"data"`
 }
 
 func CreateOkResponse(data interface{}) *HttpBundle {
 	bundle := &HttpBundle{}
-	bundle.Code = CODE_OK
-	bundle.ErrMessage = OK_MESSAGE
+	bundle.Code = CodeOk
+	bundle.ErrMessage = OkMessage
 	if data != nil {
 		bundle.Data = data
 	}
@@ -30,7 +30,7 @@ func CreateOkResponse(data interface{}) *HttpBundle {
 
 func CreateErrResponse(errMessage string) *HttpBundle {
 	bundle := &HttpBundle{}
-	bundle.Code = CODE_ERR
+	bundle.Code = CodeErr
 	bundle.ErrMessage = errMessage
 	return bundle
 }

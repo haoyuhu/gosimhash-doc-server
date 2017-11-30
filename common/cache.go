@@ -8,10 +8,10 @@ import (
 type SimhashLimit int
 
 const (
-	LIMIT_1  = SimhashLimit(1)
-	LIMIT_3  = SimhashLimit(3)
-	LIMIT_7  = SimhashLimit(7)
-	LIMIT_15 = SimhashLimit(15)
+	Limit1  = SimhashLimit(1)
+	Limit3  = SimhashLimit(3)
+	Limit7  = SimhashLimit(7)
+	Limit15 = SimhashLimit(15)
 )
 
 type SimhashCache interface {
@@ -21,13 +21,13 @@ type SimhashCache interface {
 }
 
 const (
-	MASK_2  uint64 = 0xffffffff
-	MASK_4  uint64 = 0xffff
-	MASK_8  uint64 = 0xff
-	MASK_16 uint64 = 0xf
+	Mask2  uint64 = 0xffffffff
+	Mask4  uint64 = 0xffff
+	Mask8  uint64 = 0xff
+	Mask16 uint64 = 0xf
 )
 
-var MASKS = map[int]uint64{2: MASK_2, 4: MASK_4, 8: MASK_8, 16: MASK_16}
+var MASKS = map[int]uint64{2: Mask2, 4: Mask4, 8: Mask8, 16: Mask16}
 
 type SimhashOperator struct {
 	partNumber int
@@ -46,7 +46,7 @@ func (op *SimhashOperator) Check() bool {
 }
 
 func (op *SimhashOperator) Cut(simhash uint64) []uint64 {
-	var ret []uint64 = make([]uint64, op.partNumber)
+	var ret = make([]uint64, op.partNumber)
 	var move = uint(gosimhash.BITS_LENGTH / op.partNumber)
 	for i := 0; i < op.partNumber; i++ {
 		ret[i] = op.mask & simhash

@@ -30,7 +30,7 @@ func IdentifyDoc(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	}
 	simhash := common.MakeSimhash(&docContent, topN)
 
-	var age int = 0
+	var age = 0
 	if len(ageStr) != 0 {
 		age, err = strconv.Atoi(ageStr)
 		if err != nil {

@@ -8,8 +8,8 @@ import (
 type HashType uint8
 
 const (
-	SIP_HASH     = iota
-	JENKINS_HASH
+	SipHash     = iota
+	JenkinsHash
 )
 
 var simhasher *gosimhash.Simhasher
@@ -17,10 +17,10 @@ var simhasher *gosimhash.Simhasher
 func InitializeSimhasher(hashType HashType, dict string, hmm string, userDict string, idf string, stopWords string) {
 	var inner utils.Hasher
 	switch hashType {
-	case SIP_HASH:
+	case SipHash:
 		inner = utils.NewSipHasher([]byte(gosimhash.DEFAULT_HASH_KEY))
 		break
-	case JENKINS_HASH:
+	case JenkinsHash:
 		inner = utils.NewJenkinsHasher()
 		break
 	default:

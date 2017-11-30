@@ -95,7 +95,7 @@ func (redis *RedisSimhashCache) InsertIfNotDuplicated(docId string, simhash uint
 	if err == nil {
 		parts := redis.operator.Cut(simhash)
 		for _, part := range parts {
-			key := strconv.FormatUint(part, UINT_BASE)
+			key := strconv.FormatUint(part, UnitBase)
 			_, err := redis.client.LPush(key, data).Result()
 			if err != nil {
 				log.Printf("Cannot insert doc to redis, details: %s\n", err.Error())
@@ -109,13 +109,13 @@ func (redis *RedisSimhashCache) InsertIfNotDuplicated(docId string, simhash uint
 }
 
 func (redis *RedisSimhashCache) similarDocExists(simhash uint64) (*model.Document, error) {
-	const LAST_ONE = -1
+	const LastOne = -1
 
 	parts := redis.operator.Cut(simhash)
 	for _, part := range parts {
-		key := strconv.FormatUint(part, UINT_BASE)
+		key := strconv.FormatUint(part, UnitBase)
 		// get all items from redis
-		docs, err := redis.client.LRange(key, 0, LAST_ONE).Result()
+		docs, err := redis.client.LRange(key, 0, LastOne).Result()
 		if err != nil {
 			log.Printf("Cannot get doc list from redis, details: %s\n", err.Error())
 			return nil, err
@@ -132,7 +132,7 @@ func (redis *RedisSimhashCache) similarDocExists(simhash uint64) (*model.Documen
 			// has expired
 			if doc.ExpireTime != 0 && doc.ExpireTime <= Now() {
 				// remove last ONE item that equals to docs[i]
-				_, err := redis.client.LRem(key, LAST_ONE, docs[i]).Result()
+				_, err := redis.client.LRem(key, LastOne, docs[i]).Result()
 				if err != nil {
 					log.Printf("Cannot remove expired item(%s), details: %s\n", docs[i], err.Error())
 				}
